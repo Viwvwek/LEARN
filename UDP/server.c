@@ -39,11 +39,11 @@ int main() {
     recvfrom(sock, buffer, sizeof(buffer), 0, (struct sockaddr*)&client_addr, &addr_len);
     printf("Message from client: %s\n", buffer);
 
-    // Respond to client
-    char *reply = "Hello from server!";
-    
-    sendto(sock, reply, strlen(reply), 0, (struct sockaddr*)&client_addr, addr_len);
+    memset(buffer,0,sizeof(buffer));
+    printf("enter the message to the client\n");
+    fgets(buffer,sizeof(buffer),stdin);
 
+    sendto(sock,buffer,strlen(buffer),0,(struct sockaddr*)&client_addr, addr_len);
     close(sock);
     return 0;
 }

@@ -32,12 +32,9 @@ int main() {
 
     // Send message to server
     sendto(sock, buffer, strlen(buffer), 0, (struct sockaddr*)&server_addr, sizeof(server_addr));
-
-    // Receive response
     recvfrom(sock, buffer, sizeof(buffer), 0, (struct sockaddr*)&server_addr, &addr_len);
-    
-    printf("Message from the Server is: %s\n", buffer);
 
+    printf("Message from client: %s\n", buffer);
     close(sock);
     return 0;
 }
